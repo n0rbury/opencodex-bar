@@ -49,18 +49,18 @@ description_key = "settings.hidden_providers.description"
 default         = ""
 
 [[setting]]
-key             = "theme_colors"
-type            = "bool"
-label_key       = "settings.theme_colors.label"
-description_key = "settings.theme_colors.description"
-default         = false
-
-[[setting]]
 key             = "panel_providers"
 type            = "string"
 label_key       = "settings.panel_providers.label"
 description_key = "settings.panel_providers.description"
 default         = ""
+
+[[setting]]
+key             = "theme_colors"
+type            = "bool"
+label_key       = "settings.theme_colors.label"
+description_key = "settings.theme_colors.description"
+default         = false
 
 [[service]]
 id    = "service"
