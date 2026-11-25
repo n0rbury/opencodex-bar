@@ -113,7 +113,25 @@ local function enabledProviders()
   for _, provider in ipairs(currentSnapshot.providers or {}) do
     if common.providerVisible(provider) then table.insert(result, provider) end
   end
-  return result
+  local raw = noctalia.getConfig("panel_providers")
+  if type(raw) ~= "string" or not raw:find("[^,%s]") then return result end
+
+  -- An ordered allowlist for Accounts only; global visibility still wins.
+  local function canonical(id)
+    id = id:lower()
+    return id == "codex" and "openai" or id
+  end
+  local ordered, seen = {}, {}
+  for token in raw:gmatch("[^,%s]+") do
+    local id = canonical(token)
+    if not seen[id] then
+      seen[id] = true
+      for _, provider in ipairs(result) do
+        if canonical(provider.id) == id then table.insert(ordered, provider) end
+      end
+    end
+  end
+  return ordered
 end
 
 -- A provider disabled in OpenCodex, or hidden by the `hidden_providers`
@@ -507,6 +525,9 @@ local function accountsTab(body)
       title, hint = "status.offline", "empty.offline_hint"
     elseif status == "loading" then
       title, hint = "status.loading", nil
+    elseif type(noctalia.getConfig("panel_providers")) == "string"
+      and noctalia.getConfig("panel_providers"):find("[^,%s]") then
+      title, hint = "empty.no_panel_providers", "empty.no_panel_providers_hint"
     end
     table.insert(body, ui.label({ key = "empty", text = noctalia.tr(title), fontWeight = "bold" }))
     if hint ~= nil then

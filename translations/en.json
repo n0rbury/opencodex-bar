@@ -38,6 +38,10 @@
     "theme_colors": {
       "label": "Use theme colours",
       "description": "Colour quotas with Noctalia's palette instead of the OpenCodex dashboard's green/amber/red."
+    },
+    "panel_providers": {
+      "label": "Accounts panel providers",
+      "description": "Comma-separated provider IDs in display order, e.g. openai, opencode-go. Empty shows all visible providers. Only affects the Accounts tab."
     }
   },
   "panel": {
@@ -84,7 +88,9 @@
     "auth_hint": "Set OPENCODEX_ADMIN_AUTH_TOKEN or select an admin token file in plugin settings.",
     "offline_hint": "Could not reach the local OpenCodex service.",
     "no_providers": "No enabled providers",
-    "no_providers_hint": "OpenCodex is reachable but reports no enabled provider."
+    "no_providers_hint": "OpenCodex is reachable but reports no enabled provider.",
+    "no_panel_providers": "No matching providers",
+    "no_panel_providers_hint": "Check the Accounts panel providers setting and global provider visibility."
   },
   "window": {
     "five_hour": "5 hour",

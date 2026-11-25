@@ -40,6 +40,7 @@ Right-click the widget or use Refresh to force a quota refresh. The link button 
 | `poll_seconds` | Plugin | `int` | `30` | Cached poll interval, 10–300 s. |
 | `force_refresh_minutes` | Plugin | `int` | `10` | Quota refresh interval, 5–60 min. |
 | `hidden_providers` | Plugin | `string` | empty | Comma-separated ids to hide (`openai`/`codex` are aliases). Does not change OpenCodex routing. |
+| `panel_providers` | Plugin | `string` | empty | Ordered provider allowlist for the Accounts tab only. Empty preserves the original order. |
 | `theme_colors` | Plugin | `bool` | `false` | Use Noctalia colours instead of the OpenCodex palette. |
 | `show_percentage` | Widget | `bool` | `true` | Mean quota used next to the icon. |
 | `icon_source` | Widget | `select` | `bars` | `bars`, `active`, or `fixed`. |
